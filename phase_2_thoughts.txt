@@ -13,6 +13,7 @@ PASS: Would have posted the following:
 By specifying a virtual address, you can execute those bytes as codes.
 
 2) Codes are fetched from virtual memory from bottom to up (Bottom to up -> increasing address).
+Code bound is determinded by "ret".
 
 3) The assembly version of injected codes is located in ctarget_1_2.s. Run "gcc -c ctarget_1_2.s" to build binaries.
 
@@ -20,3 +21,5 @@ By specifying a virtual address, you can execute those bytes as codes.
 
 6) Write code binaries (13 bytes) in order in the ctarget_inputs_1_2.txt. Augment it with 27 dummy bytes.
 Then write "78 dc 61 55" (represents address 0x5561dc78) to modify the return address of getbuf() from "0x401976" to the start address of inject codes.
+
+7) Don't understand why use "ret" rather than "call" yet. 
