@@ -1,0 +1,11 @@
+1) Codes are also stored in virtual memory.
+By specifying a virtual address, you can execute those bytes as codes.
+
+2) Codes are fetched from virtual memory from bottom to up (Bottom to up -> increasing address).
+
+3) The assembly version of injected codes is located in ctarget_1_2.s. Run "gcc -c ctarget_1_2.s" to build binaries.
+
+4) Char buffers are stored in virtual memory from bottom to up, right to left.
+
+6) Write code binaries (13 bytes) in order in the ctarget_inputs_1_2.txt. Augment it with 27 dummy bytes.
+Then write "78 dc 61 55" (represents address 0x5561dc78) to modify the return address of getbuf() from "0x401976" to the start address of inject codes.
