@@ -26,6 +26,8 @@ can compile (use flag -Og) and disassemble it to look for gadgets.
 Utility program to generate byte sequences.  See documentation in lab
 handout.
 
+x86-64 reference: https://www.cs.cmu.edu/~fp/courses/15213-s07/misc/asm64-handout.pdf
+
 My output:
 ./ctarget -q < ctarget_inputs_hex.txt
 Cookie: 0x59b997fa
