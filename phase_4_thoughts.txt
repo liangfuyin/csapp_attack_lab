@@ -1,4 +1,5 @@
 Command and output:
+$ objdump -d rtarget > rtarget_disassembly.txt
 $ ./hex2raw < rtarget_input_p4.txt > rtarget_input_hex.txt
 $ ./rtarget -q -i rtarget_input_hex.txt
 Cookie: 0x59b997fa
