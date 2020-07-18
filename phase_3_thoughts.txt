@@ -23,5 +23,5 @@ c3
 4) construct the string input to be:
 Injected codes (13 bytes)
 + dummy 27 bytes
-+ 0x5561dc78 in string (augment to 8 bytes)
++ 0x5561dc78 (augment to 8 bytes)
 + [cookie string value in hex] 35 39 62 39 39 37 66 61 00

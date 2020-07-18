@@ -1,5 +1,8 @@
-Output:
-./ctarget -q -i ctarget_inputs_hex.txt
+Command and Output:
+$ gcc -c ctarget_p2.s
+$ objdump -d ctarget_p2.o > ctarget_p2.d
+$ ./hex2raw < ctarget_input_p2.txt > ctarget_input_hex.txt
+$ ./ctarget -q -i ctarget_input_hex.txt
 Cookie: 0x59b997fa
 Touch2!: You called touch2(0x59b997fa)
 Valid solution for level 2 with target ctarget
@@ -15,11 +18,11 @@ By specifying a virtual address, you can execute those bytes as codes.
 2) Codes are fetched from virtual memory from bottom to up (Bottom to up -> increasing address).
 Code bound is determinded by "ret".
 
-3) The assembly version of injected codes is located in ctarget_1_2.s. Run "gcc -c ctarget_1_2.s" to build binaries.
+3) The assembly version of injected codes is located in ctarget_p2.s. Run "gcc -c ctarget_p2.s" to build binaries.
 
 4) Char buffers are stored in virtual memory from bottom to up, right to left.
 
-6) Write code binaries (13 bytes) in order in the ctarget_inputs_1_2.txt. Augment it with 27 dummy bytes.
-Then write "78 dc 61 55" (represents address 0x5561dc78) to modify the return address of getbuf() from "0x401976" to the start address of inject codes.
+6) Write code binaries (13 bytes) in order in the ctarget_input_p2.txt. Augment it with 27 dummy bytes.
+Then write "78 dc 61 55" (represents address 0x5561dc78) to modify the return address of getbuf() from "0x401976" to the start address of injected codes.
 
 7) Don't understand why use "ret" rather than "call" yet. 

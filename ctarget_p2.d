@@ -1,5 +1,5 @@
 
-ctarget_1_2.o:     file format elf64-x86-64
+ctarget_p2.o:     file format elf64-x86-64
 
 
 Disassembly of section .text:
