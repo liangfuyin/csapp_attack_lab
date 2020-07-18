@@ -1,5 +1,8 @@
-Output:
-./ctarget -q -i ctarget_inputs_hex.txt
+Command and Output:
+$ gcc -c ctarget_p3.s
+$ objdump -d ctarget_p3.o > ctarget_p3.d
+$ ./hex2raw < ctarget_input_p3.txt > ctarget_input_hex.txt
+$ ./ctarget -q -i ctarget_input_hex.txt
 Cookie: 0x59b997fa
 Touch3!: You called touch3("59b997fa")
 Valid solution for level 3 with target ctarget
